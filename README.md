@@ -25,6 +25,8 @@ This project will challenge your knowledge of React but should also be an exerci
   - created a function that runs after the turn function with a 1 ms delay to run the win condition function
   - changed the h3 to say who won
 - As a user, I should not be able to continue playing the game after the game has been won.
+  - branch: someone-won
+  - added a condition to `this.setState` square values to change to null when someone wins
 - As a user, if there are no more squares available, I should see a notice telling me that the game has ended.
 - As a user, I should see a restart button that when clicked will clear the gameboard.
 
