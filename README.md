@@ -17,6 +17,8 @@ This project will challenge your knowledge of React but should also be an exerci
   - added ❌'s and ⭕️'s to the board
   - created turns display
 - As a user, I shouldn't be able to click on a square that has already been selected.
+  - branch: disable-click
+  - added an if statement to check value of `this.state.square[index]`
 - As a user, when someone has won the game (3 squares in a row: horizontally, vertically, or diagonally) I should see a notice telling me who won.
 - As a user, I should not be able to continue playing the game after the game has been won.
 - As a user, if there are no more squares available, I should see a notice telling me that the game has ended.
