@@ -13,14 +13,16 @@ class App extends Component {
 
   handleTurns = (index) => {
     const { squares, player } = this.state;
-    player === "Player 1's Turn"
-      ? (squares[index] = "❌")
-      : (squares[index] = "⭕️");
-    this.setState({
-      squares: squares,
-      player:
-        player === "Player 1's Turn" ? "Player 2's Turn" : "Player 1's Turn",
-    });
+    if (squares[index] === "") {
+      player === "Player 1's Turn"
+        ? (squares[index] = "❌")
+        : (squares[index] = "⭕️");
+      this.setState({
+        squares: squares,
+        player:
+          player === "Player 1's Turn" ? "Player 2's Turn" : "Player 1's Turn",
+      });
+    }
   };
 
   render() {
