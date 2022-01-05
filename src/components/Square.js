@@ -4,7 +4,12 @@ class Square extends Component {
   render() {
     return (
       <>
-        <div className="square">{this.props.idx}</div>
+        <div
+          onClick={() => this.props.handleTurns(this.props.idx)}
+          className="square"
+        >
+          {this.props.value}
+        </div>
       </>
     );
   }
