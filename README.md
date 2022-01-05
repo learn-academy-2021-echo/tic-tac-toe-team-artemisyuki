@@ -28,6 +28,8 @@ This project will challenge your knowledge of React but should also be an exerci
   - branch: someone-won
   - added a condition to `this.setState` square values to change to null when someone wins
 - As a user, if there are no more squares available, I should see a notice telling me that the game has ended.
+  - branch: draw
+  - added condition to show a draw if no one wins
 - As a user, I should see a restart button that when clicked will clear the gameboard.
 
 ### Stretch Goals:
