@@ -56,9 +56,19 @@ class App extends Component {
   handleWinning = () => {
     for (let i = 0; i < winning.length; i++) {
       if (found(winning[i], this.state.player1Ticks)) {
-        this.setState({ player: "Player 1 wins!" });
+        this.setState({
+          squares: this.state.squares.map((value) =>
+            value === "" ? null : value
+          ),
+          player: "Player 1 wins!",
+        });
       } else if (found(winning[i], this.state.player2Ticks)) {
-        this.setState({ player: "Player 2 wins!" });
+        this.setState({
+          squares: this.state.squares.map((value) =>
+            value === "" ? null : value
+          ),
+          player: "Player 2 wins!",
+        });
       }
     }
   };
