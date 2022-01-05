@@ -28,30 +28,30 @@ class App extends Component {
     };
   }
 
-  handleTurns = (index) => {
+  handleTurns = (idx) => {
     const { squares, player, player1Ticks, player2Ticks } = this.state;
-    if (squares[index] === "") {
+    if (squares[idx] === "") {
       player === "Player 1's Turn"
-        ? (squares[index] = "❌")
-        : (squares[index] = "⭕️");
+        ? (squares[idx] = "❌")
+        : (squares[idx] = "⭕️");
       this.setState({
         squares: squares,
         player:
           player === "Player 1's Turn" ? "Player 2's Turn" : "Player 1's Turn",
         player1Ticks:
-          player === "Player 1's Turn"
-            ? [...player1Ticks, index]
-            : player1Ticks,
+          player === "Player 1's Turn" ? [...player1Ticks, idx] : player1Ticks,
         player2Ticks:
-          player === "Player 2's Turn"
-            ? [...player2Ticks, index]
-            : player2Ticks,
+          player === "Player 2's Turn" ? [...player2Ticks, idx] : player2Ticks,
       });
     }
     setTimeout(() => {
       this.handleWinning();
     }, 1);
   };
+
+  // draw if
+  // does not fit winning array conditions
+  // all blocks are filled no more "" or null
 
   handleWinning = () => {
     for (let i = 0; i < winning.length; i++) {
@@ -62,6 +62,7 @@ class App extends Component {
           ),
           player: "Player 1 wins!",
         });
+        break;
       } else if (found(winning[i], this.state.player2Ticks)) {
         this.setState({
           squares: this.state.squares.map((value) =>
@@ -69,6 +70,16 @@ class App extends Component {
           ),
           player: "Player 2 wins!",
         });
+        break;
+      } else if (
+        (this.state.player !== "Player 1 wins!" &&
+          !this.state.squares.includes("") &&
+          !this.state.squares.includes(null)) ||
+        (this.state.player !== "Player 2 wins!" &&
+          !this.state.squares.includes("") &&
+          !this.state.squares.includes(null))
+      ) {
+        this.setState({ player: "The match was a draw..." });
       }
     }
   };
