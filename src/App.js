@@ -13,6 +13,10 @@ const winning = [
   [2, 4, 6],
 ];
 
+const found = (arr1, arr2) => {
+  return arr1.every((value) => arr2.includes(value));
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -44,13 +48,22 @@ class App extends Component {
             : player2Ticks,
       });
     }
+    setTimeout(() => {
+      this.handleWinning();
+    }, 1);
   };
 
-  handleWinning = () => {};
+  handleWinning = () => {
+    for (let i = 0; i < winning.length; i++) {
+      if (found(winning[i], this.state.player1Ticks)) {
+        this.setState({ player: "Player 1 wins!" });
+      } else if (found(winning[i], this.state.player2Ticks)) {
+        this.setState({ player: "Player 2 wins!" });
+      }
+    }
+  };
 
   render() {
-    console.log("Player1: ", this.state.player1Ticks);
-    console.log("Player2: ", this.state.player2Ticks);
     return (
       <>
         <h1 className="header">Tic Tac Toe</h1>
@@ -62,6 +75,7 @@ class App extends Component {
               key={idx}
               idx={idx}
               handleTurns={this.handleTurns}
+              handleWinning={this.handleWinning}
             />
           ))}
         </div>

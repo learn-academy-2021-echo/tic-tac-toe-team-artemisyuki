@@ -21,6 +21,9 @@ This project will challenge your knowledge of React but should also be an exerci
   - added an if statement to check value of `this.state.square[index]`
 - As a user, when someone has won the game (3 squares in a row: horizontally, vertically, or diagonally) I should see a notice telling me who won.
   - branch: winning
+  - added win conditions
+  - created a function that runs after the turn function with a 1 ms delay to run the win condition function
+  - changed the h3 to say who won
 - As a user, I should not be able to continue playing the game after the game has been won.
 - As a user, if there are no more squares available, I should see a notice telling me that the game has ended.
 - As a user, I should see a restart button that when clicked will clear the gameboard.
