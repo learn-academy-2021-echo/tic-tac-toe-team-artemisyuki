@@ -33,8 +33,8 @@ class App extends Component {
     const { squares, player, player1Ticks, player2Ticks } = this.state;
     if (squares[idx] === "") {
       player === "Player 1's Turn"
-        ? (squares[idx] = "❌")
-        : (squares[idx] = "⭕️");
+        ? (squares[idx] = "X")
+        : (squares[idx] = "O");
       this.setState({
         squares: squares,
         player:
@@ -49,10 +49,6 @@ class App extends Component {
       this.handleWinning();
     }, 1);
   };
-
-  // draw if
-  // does not fit winning array conditions
-  // all blocks are filled no more "" or null
 
   handleWinning = () => {
     for (let i = 0; i < winning.length; i++) {
@@ -86,9 +82,13 @@ class App extends Component {
   };
 
   handleRestart = () => {
-    this.setState({squares:Array(9).fill(""), player:"Player 1's Turn", player1Ticks:[], player2Ticks:[]})
-
-  }
+    this.setState({
+      squares: Array(9).fill(""),
+      player: "Player 1's Turn",
+      player1Ticks: [],
+      player2Ticks: [],
+    });
+  };
 
   render() {
     return (
@@ -106,8 +106,7 @@ class App extends Component {
             />
           ))}
         </div>
-        <Restart
-          handleRestart={this.handleRestart}/>
+        <Restart handleRestart={this.handleRestart} />
       </>
     );
   }

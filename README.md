@@ -31,8 +31,8 @@ This project will challenge your knowledge of React but should also be an exerci
   - branch: draw
   - added condition to show a draw if no one wins
 - As a user, I should see a restart button that when clicked will clear the gameboard.
-  -branch: restart
-  -created a component named restart and passed hadleRestart to clear the board
+  - branch: restart
+  - created a component named restart and passed hadleRestart to clear the board
 
 ### Stretch Goals:
 
