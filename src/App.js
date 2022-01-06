@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Square from "./components/Square";
 import "./App.css";
+import Restart from "./components/Restart";
 
 const winning = [
   [0, 1, 2],
@@ -84,6 +85,11 @@ class App extends Component {
     }
   };
 
+  handleRestart = () => {
+    this.setState({squares:Array(9).fill(""), player:"Player 1's Turn", player1Ticks:[], player2Ticks:[]})
+
+  }
+
   render() {
     return (
       <>
@@ -100,6 +106,8 @@ class App extends Component {
             />
           ))}
         </div>
+        <Restart
+          handleRestart={this.handleRestart}/>
       </>
     );
   }
