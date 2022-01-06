@@ -50,10 +50,6 @@ class App extends Component {
     }, 1);
   };
 
-  // draw if
-  // does not fit winning array conditions
-  // all blocks are filled no more "" or null
-
   handleWinning = () => {
     for (let i = 0; i < winning.length; i++) {
       if (found(winning[i], this.state.player1Ticks)) {
@@ -86,9 +82,13 @@ class App extends Component {
   };
 
   handleRestart = () => {
-    this.setState({squares:Array(9).fill(""), player:"Player 1's Turn", player1Ticks:[], player2Ticks:[]})
-
-  }
+    this.setState({
+      squares: Array(9).fill(""),
+      player: "Player 1's Turn",
+      player1Ticks: [],
+      player2Ticks: [],
+    });
+  };
 
   render() {
     return (
@@ -106,8 +106,7 @@ class App extends Component {
             />
           ))}
         </div>
-        <Restart
-          handleRestart={this.handleRestart}/>
+        <Restart handleRestart={this.handleRestart} />
       </>
     );
   }
