@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Square from "./components/Square";
 import "./App.css";
 import Restart from "./components/Restart";
+import Emojis from "./components/Emojis";
 
 const winning = [
   [0, 1, 2],
@@ -23,26 +24,31 @@ class App extends Component {
     super(props);
     this.state = {
       squares: ["", "", "", "", "", "", "", "", ""],
-      player: "Player 1's Turn",
+      player: this.player1Turn,
       player1Ticks: [],
       player2Ticks: [],
+      player1Input: "X",
+      player2Input: "O",
     };
   }
+
+  player1Turn = `Player 1's Turn!`;
+  player2Turn = `Player 2's Turn!`;
 
   handleTurns = (idx) => {
     const { squares, player, player1Ticks, player2Ticks } = this.state;
     if (squares[idx] === "") {
-      player === "Player 1's Turn"
-        ? (squares[idx] = "X")
-        : (squares[idx] = "O");
+      player === this.player1Turn
+        ? (squares[idx] = this.state.player1Input)
+        : (squares[idx] = this.state.player2Input);
       this.setState({
         squares: squares,
         player:
-          player === "Player 1's Turn" ? "Player 2's Turn" : "Player 1's Turn",
+          player === this.player1Turn ? this.player2Turn : this.player1Turn,
         player1Ticks:
-          player === "Player 1's Turn" ? [...player1Ticks, idx] : player1Ticks,
+          player === this.player1Turn ? [...player1Ticks, idx] : player1Ticks,
         player2Ticks:
-          player === "Player 2's Turn" ? [...player2Ticks, idx] : player2Ticks,
+          player === this.player2Turn ? [...player2Ticks, idx] : player2Ticks,
       });
     }
     setTimeout(() => {
@@ -82,19 +88,46 @@ class App extends Component {
   };
 
   handleRestart = () => {
+    document.getElementById("emojis").reset();
     this.setState({
       squares: Array(9).fill(""),
-      player: "Player 1's Turn",
+      player: this.player1Turn,
       player1Ticks: [],
       player2Ticks: [],
+      player1Input: "X",
+      player2Input: "O",
     });
   };
 
+  handleChangeP1 = (e) => {
+    this.setState({
+      player1Input:
+        this.state.player1Input === this.state.player2Input
+          ? "X"
+          : e.target.value,
+    });
+  };
+
+  handleChangeP2 = (e) => {
+    if (this.state.player1Input !== this.state.player2Input) {
+      this.setState({ player2Input: e.target.value });
+    }
+  };
+
   render() {
+    console.log(this.state.player1Input);
+    console.log(this.state.player2Input);
+
     return (
       <>
         <h1 className="header">Tic Tac Toe</h1>
         <h3 className="turns">{this.state.player}</h3>
+        <form id="emojis">
+          <Emojis
+            handleChangeP1={this.handleChangeP1}
+            handleChangeP2={this.handleChangeP2}
+          />
+        </form>
         <div className="gameboard">
           {this.state.squares.map((value, idx) => (
             <Square
