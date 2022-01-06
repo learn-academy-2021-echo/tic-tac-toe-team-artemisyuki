@@ -51,10 +51,13 @@ class App extends Component {
           player === this.player2Turn ? [...player2Ticks, idx] : player2Ticks,
       });
     }
-    setTimeout(() => {
-      this.handleWinning();
-    }, 1);
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.player !== this.state.player) {
+      this.handleWinning();
+    }
+  }
 
   handleWinning = () => {
     for (let i = 0; i < winning.length; i++) {
@@ -115,9 +118,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.player1Input);
-    console.log(this.state.player2Input);
-
     return (
       <>
         <h1 className="header">Tic Tac Toe</h1>
