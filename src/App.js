@@ -33,8 +33,8 @@ class App extends Component {
     const { squares, player, player1Ticks, player2Ticks } = this.state;
     if (squares[idx] === "") {
       player === "Player 1's Turn"
-        ? (squares[idx] = "❌")
-        : (squares[idx] = "⭕️");
+        ? (squares[idx] = "X")
+        : (squares[idx] = "O");
       this.setState({
         squares: squares,
         player:

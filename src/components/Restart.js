@@ -3,9 +3,8 @@ import React, { Component } from 'react'
 export default class Restart extends Component {
     render() {
         return (
-          <div>
+          <div className="restart">
             <button
-              className="restart"
               onClick={this.props.handleRestart}>
                 Restart
             </button>
